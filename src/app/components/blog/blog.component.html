@@ -1,0 +1,23 @@
+<h1 class="text-alignment">Technology Blogs</h1>
+
+<div class="text-alignment">
+    <button mat-raised-button color="accent" (click)="addBlog()">Add blog</button>
+</div>
+<mat-card class="text-alignment" *ngFor="let item of blogList$|async">
+    <mat-card-header>
+        <h1>{{item.title}}</h1>
+        <div class="action-buttons">
+            <button mat-mini-fab color="accent" (click)="editBlog(item.id)"
+                aria-label="Example icon button with a plus one icon">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="deleteBlog(item.id)"
+                aria-label="Example icon button with a plus one icon">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{item.description}}</p>
+    </mat-card-content>
+</mat-card>

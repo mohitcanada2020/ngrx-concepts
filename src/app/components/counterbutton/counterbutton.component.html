@@ -1,0 +1,9 @@
+<div class="container">
+        <button class="button" mat-raised-button color="primary" (click)="onIncrement()">Increment</button>
+        <button class="button" mat-raised-button color="accent" (click)="onDecrement()">Decrement</button>
+        <button class="button" mat-raised-button color="warn" (click)="onReset()">Reset</button>
+        <button class="button" mat-raised-button color="info" (click)="onRename()">Rename</button>
+</div>
+
+<h1>{{(counter$ | async)}}</h1>
+

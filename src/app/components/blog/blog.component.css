@@ -1,0 +1,19 @@
+.mat-mdc-card {
+    margin-left: 25%;
+    margin-top: 2%;
+    width: 50%;
+}
+
+.text-alignment{
+    text-align: center;
+}
+
+.action-buttons{
+    text-align: right;
+    width: 100%;
+    
+}
+
+.mdc-fab{
+    margin: 2px;
+}
