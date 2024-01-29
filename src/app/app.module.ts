@@ -23,6 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { BlogEffects } from './shared/store/Blog/Blog.effects';
 import { AppEffects } from './shared/store/Global/App.effects';
 import { LoadingspinnerComponent } from './components/loadingspinner/loadingspinner.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './shared/store/Router/CustomSerializer';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,11 @@ import { LoadingspinnerComponent } from './components/loadingspinner/loadingspin
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() }),
     EffectsModule.forRoot([BlogEffects,AppEffects]),
+    StoreRouterConnectingModule.forRoot(
+      {
+        serializer:CustomSerializer
+      }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],
