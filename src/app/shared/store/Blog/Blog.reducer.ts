@@ -18,20 +18,23 @@ const _blogReducer = createReducer(
   on(loadBlog, (state) => {
     return {
       ...state,
+     // isLoaded:false
     };
   }),
   on(loadBlogSuccess, (state, action) => {
     return {
       ...state,
       bloglist: [...action.bloglist],
-      errorMessage:''
+      errorMessage: '',
+     // isLoaded:false
     };
   }),
   on(loadBlogFailure, (state, action) => {
     return {
       ...state,
-      bloglist:[],
+      bloglist: [],
       errorMessage: action.errorText,
+     // isLoaded:false
     };
   }),
   // on(addblog, (state, action) => {
@@ -47,6 +50,7 @@ const _blogReducer = createReducer(
     return {
       ...state,
       bloglist: [...state.bloglist, _blogs],
+      //isLoaded:false
     };
   }),
   on(updateBlogSuccess, (state, action) => {
@@ -57,6 +61,7 @@ const _blogReducer = createReducer(
     return {
       ...state,
       bloglist: updatedBlog,
+     // isLoaded:false
     };
   }),
   on(deleteblogsuccess, (state, action) => {
@@ -67,6 +72,7 @@ const _blogReducer = createReducer(
     return {
       ...state,
       bloglist: updatedBlog,
+     // isLoaded:false
     };
   })
 );

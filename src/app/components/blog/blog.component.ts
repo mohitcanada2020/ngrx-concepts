@@ -12,6 +12,8 @@ import {
   loadBlog,
 } from '../../shared/store/Blog/Blog.actions';
 
+import { loadspinner } from '../../shared/store/Global/App.actions';
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -24,7 +26,10 @@ export class BlogComponent implements OnInit {
   blogInfo!: Blogs;
 
   ngOnInit() {
-    this.store.dispatch(loadBlog());
+    this.store.dispatch(loadspinner({ isLoaded: true }));
+    setTimeout(() => {
+      this.store.dispatch(loadBlog());
+    }, 5000);
   }
 
   addBlog() {
@@ -50,7 +55,10 @@ export class BlogComponent implements OnInit {
 
   deleteBlog(id: any) {
     if (confirm('Do you want to delete the blog?')) {
-      this.store.dispatch(deleteblog({ blodId: id }));
+      this.store.dispatch(loadspinner({ isLoaded: true }));
+      setTimeout(() => {
+        this.store.dispatch(deleteblog({ blodId: id }));
+      }, 5000);
     }
   }
 }

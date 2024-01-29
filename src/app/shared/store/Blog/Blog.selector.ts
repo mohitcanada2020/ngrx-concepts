@@ -15,3 +15,4 @@ export const getBlogById = (blogId: number) =>
 export const getBlogInfo = createSelector(getblogState, (state) => {
   return state;
 });
+
