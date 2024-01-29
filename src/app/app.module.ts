@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddblogComponent } from './components/addblog/addblog.component';
 import { EffectsModule } from '@ngrx/effects';
 import { BlogEffects } from './shared/store/Blog/Blog.effects';
+import { AppEffects } from './shared/store/Global/App.effects';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { BlogEffects } from './shared/store/Blog/Blog.effects';
     ReactiveFormsModule,
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([BlogEffects]),
+    EffectsModule.forRoot([BlogEffects,AppEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

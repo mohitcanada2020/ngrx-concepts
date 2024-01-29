@@ -11,6 +11,8 @@ export const UPDATE_BLOG_SUCCESS = '[blog page] update blog success';
 export const DELETE_BLOG = '[blog page] delete blog';
 export const DELETE_BLOG_SUCCESS = '[blog page] delete blog success';
 
+export const SHOW_SNACKBAR = '[Material UI] show snackbar';
+
 export const loadBlog = createAction(LOAD_BLOG);
 
 export const loadBlogSuccess = createAction(
