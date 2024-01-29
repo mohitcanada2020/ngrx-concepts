@@ -51,7 +51,6 @@ export class AddblogComponent implements OnInit {
   }
 
   saveBlog() {
-    debugger;
     if (this.blogForm.valid) {
       const _bloginput: BlogModel = {
         id: 0,
