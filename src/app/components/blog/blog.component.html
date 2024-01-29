@@ -1,23 +1,40 @@
 <h1 class="text-alignment">Technology Blogs</h1>
+<div *ngIf="!(blogInfo$|async)?.errorMessage">
+    <div class="text-alignment">
+        <button mat-raised-button color="accent" (click)="addBlog()">Add blog</button>
+    </div>
 
-<div class="text-alignment">
-    <button mat-raised-button color="accent" (click)="addBlog()">Add blog</button>
+    <mat-card *ngIf="!(blogInfo$|async)?.bloglist?.length">
+        <mat-card-header>
+            <h1>No Records found!!</h1>
+        </mat-card-header>
+    </mat-card>
+
+    <mat-card class="text-alignment" *ngFor="let item of (blogInfo$|async)?.bloglist">
+        <mat-card-header>
+            <h1>{{item.title}}</h1>
+            <div class="action-buttons">
+                <button mat-mini-fab color="accent" (click)="editBlog(item.id)"
+                    aria-label="Example icon button with a plus one icon">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn" (click)="deleteBlog(item.id)"
+                    aria-label="Example icon button with a plus one icon">
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{item.description}}</p>
+        </mat-card-content>
+    </mat-card>
 </div>
-<mat-card class="text-alignment" *ngFor="let item of blogList$|async">
+
+<mat-card *ngIf="(blogInfo$|async)?.errorMessage">
     <mat-card-header>
-        <h1>{{item.title}}</h1>
-        <div class="action-buttons">
-            <button mat-mini-fab color="accent" (click)="editBlog(item.id)"
-                aria-label="Example icon button with a plus one icon">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" (click)="deleteBlog(item.id)"
-                aria-label="Example icon button with a plus one icon">
-                <mat-icon>delete_forever</mat-icon>
-            </button>
-        </div>
+        <h1>Error Occurred</h1>
     </mat-card-header>
     <mat-card-content>
-        <p>{{item.description}}</p>
+        <p style="color: red;">{{(blogInfo$|async)?.errorMessage}}</p>
     </mat-card-content>
 </mat-card>

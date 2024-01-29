@@ -19,6 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { AppState } from './shared/store/Global/App.state';
 import { HttpClientModule } from '@angular/common/http';
 import { AddblogComponent } from './components/addblog/addblog.component';
+import { EffectsModule } from '@ngrx/effects';
+import { BlogEffects } from './shared/store/Blog/Blog.effects';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { AddblogComponent } from './components/addblog/addblog.component';
     ReactiveFormsModule,
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: false, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([BlogEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
