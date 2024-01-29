@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { BlogModel } from '../../shared/store/Blog/Blog.model';
 import { AppStateModel } from '../../shared/store/Global/AppState.Model';
 import { addblog, updateblog } from '../../shared/store/Blog/Blog.actions';
+
+import { loadspinner } from '../../shared/store/Global/App.actions';
 import { getBlogById } from '../../shared/store/Blog/Blog.selector';
 
 @Component({
@@ -57,15 +59,17 @@ export class AddblogComponent implements OnInit {
         title: this.blogForm.controls['title'].value as string,
         description: this.blogForm.controls['description'].value as string,
       };
-      console.log(this.blogForm.value);
-      if (this.data.isedit) {
-        _bloginput.id=this.blogForm.value.id as number;
-        this.store.dispatch(updateblog({ bloginput: _bloginput }));
-      } else {
-        this.store.dispatch(addblog({ bloginput: _bloginput }));
-      }
+      this.store.dispatch(loadspinner({ isLoaded: true }));
 
-      this.closePopup();
+      setTimeout(() => {
+        if (this.data.isedit) {
+          _bloginput.id = this.blogForm.value.id as number;
+          this.store.dispatch(updateblog({ bloginput: _bloginput }));
+        } else {
+          this.store.dispatch(addblog({ bloginput: _bloginput }));
+        }
+        this.closePopup();
+      }, 5000);
     }
   }
 }

@@ -14,6 +14,7 @@ import {
   updateBlogSuccess,
   updateblog,
 } from './Blog.actions';
+import { loadspinner } from '../Global/App.actions';
 import {
   EMPTY,
   catchError,
@@ -44,10 +45,15 @@ export class BlogEffects {
           switchMap((data) =>
             of(
               loadBlogSuccess({ bloglist: data }),
-              showAlert({ message: 'Blog loaded successfully' })
+              loadspinner({ isLoaded: false })
             )
           ),
-          catchError((_error) => of(showAlert({ message: 'Loading blogs failed due to' + _error.message })))
+          catchError((_error) =>
+            of(
+              loadBlogFailure({ errorText: _error.message }),
+              loadspinner({ isLoaded: false })
+            )
+          )
         )
       )
     )
@@ -61,11 +67,17 @@ export class BlogEffects {
           switchMap((data) =>
             of(
               addBlogSuccess({ bloginput: data as BlogModel }),
+              loadspinner({ isLoaded: false }),
               showAlert({ message: 'Blog added successfully' })
             )
           ),
           catchError((_error) =>
-            of(showAlert({ message: 'Adding blogs failed due to' + _error.message }))
+            of(
+              showAlert({
+                message: 'Adding blogs failed due to' + _error.message,
+              }),
+              loadspinner({ isLoaded: false })
+            )
           )
         )
       )
@@ -80,11 +92,17 @@ export class BlogEffects {
           switchMap(() =>
             of(
               updateBlogSuccess({ bloginput: action.bloginput }),
+              loadspinner({ isLoaded: false }),
               showAlert({ message: 'Blog Updated successfully' })
             )
           ),
           catchError((_error) =>
-            of(showAlert({ message: 'Updating blogs failed due to' + _error.message }))
+            of(
+              showAlert({
+                message: 'Updating blogs failed due to' + _error.message,
+              }),
+              loadspinner({ isLoaded: false })
+            )
           )
         )
       )
@@ -99,11 +117,17 @@ export class BlogEffects {
           switchMap(() =>
             of(
               deleteblogsuccess({ blodId: action.blodId }),
+              loadspinner({ isLoaded: false }),
               showAlert({ message: 'Blog deleted successfully' })
             )
           ),
           catchError((_error) =>
-            of(showAlert({ message: 'Deleting blogs failed due to' + _error.message }))
+            of(
+              showAlert({
+                message: 'Deleting blogs failed due to' + _error.message,
+              }),
+              loadspinner({ isLoaded: false })
+            )
           )
         )
       )

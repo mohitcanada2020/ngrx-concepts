@@ -22,6 +22,7 @@ import { AddblogComponent } from './components/addblog/addblog.component';
 import { EffectsModule } from '@ngrx/effects';
 import { BlogEffects } from './shared/store/Blog/Blog.effects';
 import { AppEffects } from './shared/store/Global/App.effects';
+import { LoadingspinnerComponent } from './components/loadingspinner/loadingspinner.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AppEffects } from './shared/store/Global/App.effects';
     BlogComponent,
     HeaderComponent,
     AddblogComponent,
+    LoadingspinnerComponent
   ],
   imports: [
     BrowserModule,
